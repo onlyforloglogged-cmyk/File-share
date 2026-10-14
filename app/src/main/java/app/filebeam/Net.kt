@@ -7,7 +7,7 @@ import java.net.NetworkInterface
 fun localIp(): String? = try {
     NetworkInterface.getNetworkInterfaces().toList()
         .flatMap { it.inetAddresses.toList() }
-        .firstOrNull { it is Inet4Address && !it.isLoopback && it.isSiteLocalAddress }
+        .firstOrNull { it is Inet4Address && !it.isLoopbackAddress && it.isSiteLocalAddress }
         ?.hostAddress
 } catch (e: Exception) {
     null
